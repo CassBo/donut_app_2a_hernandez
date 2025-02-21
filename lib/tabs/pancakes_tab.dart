@@ -6,7 +6,7 @@ class PanCakesTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text("DonutTab"),
+      child: Text("PanCakesTab"),
     );
   }
 }

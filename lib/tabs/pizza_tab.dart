@@ -6,7 +6,7 @@ class PizzaTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text("DonutTab"),
+      child: Text("PizzaTab"),
     );
   }
 }
