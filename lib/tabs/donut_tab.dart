@@ -11,9 +11,7 @@ final List donutsOnSale = [
    ["Choco", "95", Colors.brown, "lib/images/chocolate_donut.png"],
 
 ];
-DonutTab({super.key})
-
-
+DonutTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +21,8 @@ DonutTab({super.key})
       gridDelegate: 
       SliverGridDelegateWithFixedCrossAxisCount(
         //Determina numero de columnas
-        crossAxisCount: 2), 
+        crossAxisCount: 2,
+        childAspectRatio: 1 / 1.5),
       itemBuilder: (context, index){
         return DonutTile(
           donutFlavor: donutsOnSale[index][0],
@@ -31,11 +30,7 @@ DonutTab({super.key})
           donutColor: donutsOnSale[index][2],
           imageName: donutsOnSale[index][3]
         );
-
-
-      }
-      
-      
-      );
+      },
+    );
   }
 }
