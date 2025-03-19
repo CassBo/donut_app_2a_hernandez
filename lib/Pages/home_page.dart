@@ -84,6 +84,43 @@ MyTab(iconPath: 'lib/icons/pizza.png'),
                 PizzaTab(),
               ]) ,
             ),
+            Container(
+              color: Colors.white,
+              padding: EdgeInsets.all(16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(padding: EdgeInsets.only(left: 28),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                    Text('2 Items | \$10.00', 
+                    style: 
+                      TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
+                    ),
+                    Text('Delivery Charges Included',
+                    style: 
+                      TextStyle(
+                        fontSize: 12,
+                      ),
+                    ),
+                    ],
+                  )
+                  ),
+                  ElevatedButton(
+                      onPressed: (){},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromARGB(255, 218, 113, 148),
+                        padding: EdgeInsets.symmetric(horizontal: 24, vertical:12)),
+                      child: Text('View Cart',
+                        style: 
+                          TextStyle(fontSize: 16, color: Colors.white)), 
+                      )
+                ]
+              ),
+            )
           ],
         ), // Agregado: Cierre del Column
       ),
