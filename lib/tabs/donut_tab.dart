@@ -9,6 +9,10 @@ class DonutTab extends StatelessWidget {
    ["Strawberry","Dunkin Donuts", "45", Colors.red, "lib/images/strawberry_donut.png"],
    ["Grape Ape","Krispy Kream", "84", Colors.purple, "lib/images/grape_donut.png"],
    ["Choco","Dunkin Donuts", "95", Colors.brown, "lib/images/chocolate_donut.png"],
+   ["Ice Cream","Krispy Kream", "36", Colors.yellow, "lib/images/icecream_donut.png"],
+   ["Strawberry","Dunkin Donuts", "45", Colors.pink, "lib/images/strawberry_donut.png"],
+   ["Grape Ape","Krispy Kream", "84", Colors.green, "lib/images/grape_donut.png"],
+   ["Choco","Dunkin Donuts", "95", Colors.blueGrey, "lib/images/chocolate_donut.png"],
   ]; //final es como la decisión final, no va a cambiar
   DonutTab({super.key});
 
