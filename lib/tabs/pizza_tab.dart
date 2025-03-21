@@ -9,14 +9,14 @@ class PizzaTab extends StatelessWidget {
   //Lista de donas
   final List donutsOnSale = [
     // [ donutFlavor, donutStore, donutPrice, donutColor, imageName ]
-   ["Ice Cream","Krispy Kream", "36", Colors.blue, "lib/images/icecream_donut.png"],
-   ["Strawberry","Dunkin Donuts", "45", Colors.red, "lib/images/strawberry_donut.png"],
-   ["Grape Ape","Krispy Kream", "84", Colors.purple, "lib/images/grape_donut.png"],
-   ["Choco","Dunkin Donuts", "95", Colors.brown, "lib/images/chocolate_donut.png"],
-   ["Ice Cream","Krispy Kream", "36", Colors.yellow, "lib/images/icecream_donut.png"],
-   ["Strawberry","Dunkin Donuts", "45", Colors.pink, "lib/images/strawberry_donut.png"],
-   ["Grape Ape","Krispy Kream", "84", Colors.green, "lib/images/grape_donut.png"],
-   ["Choco","Dunkin Donuts", "95", Colors.blueGrey, "lib/images/chocolate_donut.png"],
+    ["Italian", "Domino's", "36", Colors.blue, "lib/images/pizza1.png"],
+    ["Mushroom", "Pizza Hut", "45", Colors.red, "lib/images/pizza2.png"],
+    ["Hawaiian", "Little Caesars", "84", Colors.purple, "lib/images/pizza3.png"],
+    ["Pepperoni", "Papa John's", "95", Colors.brown, "lib/images/pizza4.png"],
+    ["Seafood", "California Pizza Kitchen", "50", Colors.yellow, "lib/images/pizza5.png"],
+    ["Vegetarian", "Marco's Pizza", "70", Colors.indigo, "lib/images/pizza6.png"],
+    ["Margherita", "Sbarro", "65", Colors.green, "lib/images/pizza7.png"],
+    ["Three cheeses", "Chuck E. Cheese", "80", Colors.orange, "lib/images/pizza8.png"],
   ]; //final es como la decisión final, no va a cambiar
 
   @override

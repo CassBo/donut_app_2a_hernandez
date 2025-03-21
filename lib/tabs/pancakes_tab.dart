@@ -8,16 +8,15 @@ class PanCakesTab extends StatelessWidget {
 
   //Lista de donas
   final List donutsOnSale = [
-    // [ donutFlavor, donutStore, donutPrice, donutColor, imageName ]
-   ["Ice Cream","Krispy Kream", "36", Colors.blue, "lib/images/icecream_donut.png"],
-   ["Strawberry","Dunkin Donuts", "45", Colors.red, "lib/images/strawberry_donut.png"],
-   ["Grape Ape","Krispy Kream", "84", Colors.purple, "lib/images/grape_donut.png"],
-   ["Choco","Dunkin Donuts", "95", Colors.brown, "lib/images/chocolate_donut.png"],
-   ["Ice Cream","Krispy Kream", "36", Colors.yellow, "lib/images/icecream_donut.png"],
-   ["Strawberry","Dunkin Donuts", "45", Colors.pink, "lib/images/strawberry_donut.png"],
-   ["Grape Ape","Krispy Kream", "84", Colors.green, "lib/images/grape_donut.png"],
-   ["Choco","Dunkin Donuts", "95", Colors.blueGrey, "lib/images/chocolate_donut.png"],
-  ]; //final es como la decisión final, no va a cambiar
+    ["Spongy pancakes", "IHOP", "36", Colors.blue, "lib/images/pancakes3.png"],
+    ["Pancakes fillers", "Denny's", "45", Colors.red, "lib/images/pancakes6.png"],
+    ["Japanese spongy pancakes", "The Pancake House", "84", Colors.purple, "lib/images/pancakes2.png"],
+    ["Choco pancakes", "Waffle House", "95", Colors.brown, "lib/images/pancakes1.png"],
+    ["Oat pancakes", "Perkins", "50", Colors.yellow, "lib/images/pancakes4.png"],
+    ["Strawberry pancakes", "Village Inn", "70", Colors.indigo, "lib/images/pancakes5.png"],
+    ["Hotcakes light", "Cracker Barrel", "65", Colors.green, "lib/images/pancakes7.png"],
+    ["Berry pancakes", "Bob Evans", "80", Colors.blue, "lib/images/pancakes8.png"],
+  ];//final es como la decisión final, no va a cambiar
 
   @override
   Widget build(BuildContext context) {
