@@ -129,7 +129,12 @@ class _HomePageState extends State<HomePage> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => CartPage(cartItems: cartItems)),
+                        MaterialPageRoute(builder: (context) => CartPage(cartItems: cartItems, onItemRemoved: (index) {
+                          setState(() {
+                            cartItems.removeAt(index);
+                          });
+                        })
+                        )
                       );
                     },
                     style: ElevatedButton.styleFrom(

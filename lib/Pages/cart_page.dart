@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class CartPage extends StatefulWidget {
   final List<Map<String, dynamic>> cartItems;
+  final Function(int) onItemRemoved; // New callback function
 
-  CartPage({Key? key, required this.cartItems}) : super(key: key);
+  CartPage({Key? key, required this.cartItems, required this.onItemRemoved}) : super(key: key);
+
 
   @override
   _CartPageState createState() => _CartPageState();
@@ -39,7 +41,9 @@ class _CartPageState extends State<CartPage> {
     });
   }
 
-  void removeItem(int index) {
+  void removeItem(int index) { 
+    widget.onItemRemoved(index); // Notify HomePage about the removal
+
     setState(() {
       widget.cartItems.removeAt(index);
     });
