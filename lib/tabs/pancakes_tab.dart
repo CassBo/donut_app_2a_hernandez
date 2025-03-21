@@ -2,6 +2,10 @@ import 'package:donut_app_2a_hernandez/Utils/donut_tile.dart';
 import 'package:flutter/material.dart';
 
 class PanCakesTab extends StatelessWidget {
+  final void Function(String, String) addToCart;
+
+   PanCakesTab({super.key , required this.addToCart});
+
   //Lista de donas
   final List donutsOnSale = [
     // [ donutFlavor, donutStore, donutPrice, donutColor, imageName ]
@@ -14,10 +18,10 @@ class PanCakesTab extends StatelessWidget {
    ["Grape Ape","Krispy Kream", "84", Colors.green, "lib/images/grape_donut.png"],
    ["Choco","Dunkin Donuts", "95", Colors.blueGrey, "lib/images/chocolate_donut.png"],
   ]; //final es como la decisión final, no va a cambiar
-  PanCakesTab({super.key});
 
   @override
   Widget build(BuildContext context) {
+  
     return GridView.builder(
       //Cuántos elementos tiene
       itemCount: donutsOnSale.length,
@@ -36,6 +40,8 @@ class PanCakesTab extends StatelessWidget {
           donutPrice : donutsOnSale [index][2],
           donutColor : donutsOnSale [index][3],
           imageName : donutsOnSale [index][4],
+          addToCart: addToCart,
+  
 
 
         );

@@ -4,6 +4,7 @@ import 'package:donut_app_2a_hernandez/tabs/donut_tab.dart';
 import 'package:donut_app_2a_hernandez/tabs/pancakes_tab.dart';
 import 'package:donut_app_2a_hernandez/tabs/pizza_tab.dart';
 import 'package:donut_app_2a_hernandez/tabs/smoothie_tab.dart';
+import 'package:donut_app_2a_hernandez/Pages/cart_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,19 +15,37 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<Widget> myTabs = [
+    //Donut Tab
+    MyTab(iconPath: 'lib/icons/donut.png'),
+    //Burger Tab
+    MyTab(iconPath: 'lib/icons/burger.png'),
+    //Smoothie Tab
+    MyTab(iconPath: 'lib/icons/smoothie.png'),
+    //Pancake Tab
+    MyTab(iconPath: 'lib/icons/pancakes.png'),
+    //Pizza Tab
+    MyTab(iconPath: 'lib/icons/pizza.png'),
+  ];
 
-List<Widget> myTabs = [
-//Donut Tab
-MyTab(iconPath: 'lib/icons/donut.png'),
-//Burger Tab
-MyTab(iconPath: 'lib/icons/burger.png'),
-//Smoothie Tab
-MyTab(iconPath: 'lib/icons/smoothie.png'),
-//Pancake Tab
-MyTab(iconPath: 'lib/icons/pancakes.png'),
-//Pizza Tab
-MyTab(iconPath: 'lib/icons/pizza.png'),
-];
+  List<Map<String, dynamic>> cartItems = [];
+
+  void addToCart(String flavor, String price) { 
+    // Capture the flavor and price from the respective tab
+
+    setState(() {
+      cartItems.add({
+        'name': flavor,
+        'quantity': 1,
+        'price': double.parse(price),
+      });
+    });
+  }
+
+  double getTotal() {
+    return cartItems.fold(0, (total, item) => total + (item['price'] * item['quantity']));
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +67,7 @@ MyTab(iconPath: 'lib/icons/pizza.png'),
             )
           ],
         ),
-        body:  Column( // Agregado: 'const' está bien aquí
+        body: Column(
           children: [
             // Texto
             Padding(
@@ -76,13 +95,13 @@ MyTab(iconPath: 'lib/icons/pizza.png'),
             TabBar(tabs: myTabs),
             //Tab bar view
             Expanded(
-              child: TabBarView(children:[
-                DonutTab(),
-                BurgerTab(),
-                SmoothieTab(),
-                PanCakesTab(),
-                PizzaTab(),
-              ]) ,
+              child: TabBarView(children: [
+                DonutTab(addToCart: addToCart),
+                BurgerTab(addToCart: addToCart),
+                SmoothieTab(addToCart: addToCart,),
+                PanCakesTab(addToCart: addToCart,),
+                PizzaTab(addToCart: addToCart),
+              ]),
             ),
             Container(
               color: Colors.white,
@@ -90,35 +109,39 @@ MyTab(iconPath: 'lib/icons/pizza.png'),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(padding: EdgeInsets.only(left: 28),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                    Text('2 Items | \$10.00', 
-                    style: 
-                      TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold),
+                  Padding(
+                    padding: EdgeInsets.only(left: 28),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${cartItems.length} Items | \$${getTotal().toStringAsFixed(2)}',
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          'Delivery Charges Included',
+                          style: TextStyle(fontSize: 12),
+                        ),
+                      ],
                     ),
-                    Text('Delivery Charges Included',
-                    style: 
-                      TextStyle(
-                        fontSize: 12,
-                      ),
-                    ),
-                    ],
-                  )
                   ),
-                    ElevatedButton(
-                      onPressed: (){},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 218, 113, 148),
-                        padding: EdgeInsets.symmetric(horizontal: 24, vertical:12)),
-                      child: Text('View Cart',
-                        style: 
-                          TextStyle(fontSize: 16, color: Colors.white)), 
-                      )
-                ]
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CartPage(cartItems: cartItems)),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 218, 113, 148),
+                      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    ),
+                    child: Text(
+                      'View Cart',
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
+                  )
+                ],
               ),
             )
           ],
