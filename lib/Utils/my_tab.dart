@@ -11,14 +11,12 @@ class MyTab extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
-          color: Colors.grey[200],
-         borderRadius: BorderRadius.circular(16)
-        ),
+            color: Colors.grey[200], borderRadius: BorderRadius.circular(16)),
         child: Image.asset(
           iconPath,
           color: Colors.grey[600],
         ),
       ),
-    );  
+    );
   }
 }

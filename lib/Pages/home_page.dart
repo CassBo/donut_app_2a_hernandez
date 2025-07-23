@@ -5,6 +5,7 @@ import 'package:donut_app_2a_hernandez/tabs/pancakes_tab.dart';
 import 'package:donut_app_2a_hernandez/tabs/pizza_tab.dart';
 import 'package:donut_app_2a_hernandez/tabs/smoothie_tab.dart';
 import 'package:donut_app_2a_hernandez/Pages/cart_page.dart';
+import 'package:donut_app_2a_hernandez/Pages/supermarket_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -30,7 +31,7 @@ class _HomePageState extends State<HomePage> {
 
   List<Map<String, dynamic>> cartItems = [];
 
-  void addToCart(String flavor, String price) { 
+  void addToCart(String flavor, String price) {
     // Capture the flavor and price from the respective tab
 
     setState(() {
@@ -43,9 +44,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   double getTotal() {
-    return cartItems.fold(0, (total, item) => total + (item['price'] * item['quantity']));
+    return cartItems.fold(
+        0, (total, item) => total + (item['price'] * item['quantity']));
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -55,10 +56,17 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          // Icono de la izquierda
-          leading: Icon(
-            Icons.menu,
-            color: Colors.grey[800],
+          // Icono de la izquierda - ahora funcional
+          leading: Builder(
+            builder: (context) => IconButton(
+              icon: Icon(
+                Icons.menu,
+                color: Colors.grey[800],
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            ),
           ),
           actions: [
             Padding(
@@ -66,6 +74,93 @@ class _HomePageState extends State<HomePage> {
               child: Icon(Icons.person),
             )
           ],
+        ),
+        // Drawer (side window)
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 218, 113, 148),
+                ),
+                child: Text(
+                  'Menú Principal',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              ListTile(
+                leading: const Icon(Icons.store,
+                    color: Color.fromARGB(255, 218, 113, 148)),
+                title: const Text('Supermercado'),
+                onTap: () {
+                  // Cerrar el drawer
+                  Navigator.pop(context);
+                  // Navegar a SupermarketPage
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SuperMarketPage(),
+                    ),
+                  );
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.home,
+                    color: Color.fromARGB(255, 218, 113, 148)),
+                title: const Text('Inicio'),
+                onTap: () {
+                  Navigator.pop(context);
+                  // Ya estás en la página de inicio
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.shopping_cart,
+                    color: Color.fromARGB(255, 218, 113, 148)),
+                title: const Text('Ver Carrito'),
+                onTap: () {
+                  Navigator.pop(context);
+                  // Navegar al carrito
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CartPage(
+                        cartItems: cartItems,
+                        onItemRemoved: (index) {
+                          setState(() {
+                            cartItems.removeAt(index);
+                          });
+                        },
+                      ),
+                    ),
+                  );
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.settings,
+                    color: Color.fromARGB(255, 218, 113, 148)),
+                title: const Text('Configuración'),
+                onTap: () {
+                  Navigator.pop(context);
+                  // Aquí puedes añadir navegación a configuración
+                },
+              ),
+              const Divider(),
+              ListTile(
+                leading: const Icon(Icons.info,
+                    color: Color.fromARGB(255, 218, 113, 148)),
+                title: const Text('Acerca de'),
+                onTap: () {
+                  Navigator.pop(context);
+                  // Aquí puedes añadir navegación a información
+                },
+              ),
+            ],
+          ),
         ),
         body: Column(
           children: [
@@ -98,8 +193,12 @@ class _HomePageState extends State<HomePage> {
               child: TabBarView(children: [
                 DonutTab(addToCart: addToCart),
                 BurgerTab(addToCart: addToCart),
-                SmoothieTab(addToCart: addToCart,),
-                PanCakesTab(addToCart: addToCart,),
+                SmoothieTab(
+                  addToCart: addToCart,
+                ),
+                PanCakesTab(
+                  addToCart: addToCart,
+                ),
                 PizzaTab(addToCart: addToCart),
               ]),
             ),
@@ -116,7 +215,8 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Text(
                           '${cartItems.length} Items | \$${getTotal().toStringAsFixed(2)}',
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           'Delivery Charges Included',
@@ -128,18 +228,20 @@ class _HomePageState extends State<HomePage> {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => CartPage(cartItems: cartItems, onItemRemoved: (index) {
-                          setState(() {
-                            cartItems.removeAt(index);
-                          });
-                        })
-                        )
-                      );
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CartPage(
+                                  cartItems: cartItems,
+                                  onItemRemoved: (index) {
+                                    setState(() {
+                                      cartItems.removeAt(index);
+                                    });
+                                  })));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 218, 113, 148),
-                      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                     ),
                     child: Text(
                       'View Cart',
@@ -150,8 +252,8 @@ class _HomePageState extends State<HomePage> {
               ),
             )
           ],
-        ), // Agregado: Cierre del Column
+        ),
       ),
-    ); // Agregado: Cierre del Scaffold
+    );
   }
 }
